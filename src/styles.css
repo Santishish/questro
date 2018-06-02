@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: #ffffff;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  color: #999999;
+}
+
+h1 {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-size: 48px;
+  color: #1361a0;
+}
+
+h2 {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-size: 36px;
+  color: #1361a0;
+}
+
+h3 {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  color: #1361a0;
+}
+
+h4 {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: #999999;
+}
+
+p, ul li {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+}
+
+.page {
+  margin-top: 8rem;
+}

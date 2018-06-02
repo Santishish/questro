@@ -1,0 +1,52 @@
+
+button {
+  color: #1361a0;
+}
+
+ul li {
+  list-style-type: none;
+  color: #999999;
+}
+
+.card {
+  border-radius: 0 !important;
+}
+
+.card-img-top {
+  border-radius: 0 !important;
+}
+
+.card-icon {
+  margin-right: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.card-img-overlay {
+  opacity: 1;
+  background-color: rgba(0,0,0,0.6);
+  -webkit-transition: .5s ease;
+  -moz-transition: .5s ease;
+  -ms-transition: .5s ease;
+  -o-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.card-img-overlay:hover {
+  opacity: 0;
+}
+
+/*.hotel-logo {
+  width: 75%;
+}*/
+
+.cdm-logo {
+  width: 215px;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+a {
+  color: #1361a0;
+}

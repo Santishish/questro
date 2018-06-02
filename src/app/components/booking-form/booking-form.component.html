@@ -1,0 +1,45 @@
+<div id="booking-form" class="container my-5">
+  <form>
+    <div class="row mt-3">
+      <div class="col-md-2">
+        <mat-form-field>
+          <mat-select [(value)]="hotel" placeholder="Select a Resort">
+            <mat-option *ngFor="let hotel of hotels" [value]="hotel.value">{{hotel.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <mat-form-field>
+          <input matInput (dateChange)="changeCheck('in', $event)" [matDatepicker]="checkin" placeholder="Check In Date">
+          <mat-datepicker-toggle matSuffix [for]="checkin"></mat-datepicker-toggle>
+          <mat-datepicker #checkin></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <mat-form-field>
+          <input matInput (dateChange)="changeCheck('out', $event)" [matDatepicker]="checkout" placeholder="Check In Date">
+          <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+          <mat-datepicker #checkout></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <mat-form-field>
+          <mat-select [(value)]="adults" placeholder="Adults">
+            <mat-option *ngFor="let adult of adultDropdown" [value]="adult">{{adult}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <mat-form-field>
+          <mat-select [(value)]="children" placeholder="Children">
+            <mat-option *ngFor="let child of childDropdown" [value]="child">{{child}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <button (click)="book()" mat-raised-button class="btn btn-primary w-100">BOOK NOW</button>
+      </div>
+    </div>
+  </form>
+
+</div>

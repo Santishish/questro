@@ -1,0 +1,56 @@
+<nav class="nav-bar">
+  <div class="top-nav container-fluid row">
+    <div class="col-md-2 d-flex align-items-center">
+      <img routerLink="/" src="assets/images/QR_Logo.svg" alt="Logo" class="logo">
+    </div>
+    <div class="col-md-8">
+
+      <div class="d-flex h-100 justify-content-around align-items-center">
+        <div *ngIf="state === 'hide'">
+          <ul class="nav">
+            <li class="nav-item">
+              <a routerLink="/promotions" [routerLinkActive]="['active']" class="nav-link">PROMOTIONS</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/experiences" [routerLinkActive]="['active']" class="nav-link">EXPERIENCES</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/relaxing" [routerLinkActive]="['active']" class="nav-link">RELAXING</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/wedding-events" [routerLinkActive]="['active']" class="nav-link">WEDDINGS &amp; EVENTS</a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/contact" [routerLinkActive]="['active']" class="nav-link">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-2 d-flex align-items-center">
+      <button mat-raised-button class="btn btn-primary w-75">BOOK NOW</button>
+    </div>
+  </div>
+  <div [@scrollAnimation]="state" class="bottom-nav container">
+    <div class="col-md-8 d-flex justify-content-around h-100 align-items-center mx-auto">
+      <ul class="nav">
+        <li class="nav-item">
+          <a routerLink="/promotions" [routerLinkActive]="['active']" class="nav-link">PROMOTIONS</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/experiences" [routerLinkActive]="['active']" class="nav-link">EXPERIENCES</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/relaxing" [routerLinkActive]="['active']" class="nav-link">RELAXING</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/wedding-events" [routerLinkActive]="['active']" class="nav-link">WEDDINGS &amp; EVENTS</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" [routerLinkActive]="['active']" class="nav-link">CONTACT</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

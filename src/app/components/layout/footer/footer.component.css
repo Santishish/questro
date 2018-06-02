@@ -1,0 +1,18 @@
+#footer {
+  background-color: #1361a0;
+  color: #fff;
+}
+
+.info ul {
+  padding: 0;
+}
+
+.info ul li {
+  list-style-type: none;
+  text-align: center;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+}

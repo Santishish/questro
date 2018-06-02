@@ -1,0 +1,30 @@
+<div class="page">
+
+  <app-carousel [isControls]="true" [animation]="'slide'">
+    <app-slide *ngFor="let img of imgURL">
+      <img [src]="img" alt="" class="d-block w-100">
+    </app-slide>
+  </app-carousel>
+
+  <app-booking-form></app-booking-form>
+
+  <app-awards></app-awards>
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+
+      <div class="text-center">
+        <h2>YOU NEED TO LIVE IT</h2>
+      </div>
+      <div class="w-100"></div>
+
+      <div class="col-md-12">
+        <app-hotel-card></app-hotel-card>
+      </div>
+
+
+    </div>
+  </div>
+
+  <app-newsletter-form></app-newsletter-form>
+</div>
