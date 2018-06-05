@@ -1,5 +1,57 @@
 <div class="page">
-  <p>
-    experiences works!
-  </p>
+  <app-carousel [isControls]="true" [animation]="'slide'">
+    <app-slide *ngFor="let img of imgURL">
+      <img [src]="img" alt="" class="d-block w-100">
+    </app-slide>
+  </app-carousel>
+  <app-booking-form></app-booking-form>
+  <div class="text-center">
+    <h2 class="experiences">Let's Do It</h2>
+    <div class="jumbotron mb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="assets/images/experiences/CardWildCanyon.jpg" alt="Wild Canyon" class="card-img">
+              <div class="card-img-overlay">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <img class="logo" src="assets/images/experiences/logo_WildCanyon.png" alt="Wild Canyon Logo">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="assets/images/experiences/CardCuadraSanFrancisco.jpg" alt="Cuadra San Francisco" class="card-img">
+              <div class="card-img-overlay">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <img class="logo" src="assets/images/experiences/LOGO_CuadraSF.png" alt="Cuadra San Francisco Logo">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="assets/images/experiences/CardGolf.jpg" alt="Golf" class="card-img">
+              <div class="card-img-overlay">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <img class="logo" src="assets/images/experiences/Logo_QuestroGolf.png" alt="Golf Logo">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <img src="assets/images/experiences/CardDolphin.jpg" alt="Dolphin" class="card-img">
+              <div class="card-img-overlay">
+                <div class="d-flex h-100 align-items-center justify-content-center">
+                  <img class="logo" src="assets/images/experiences/Logo_Dolphin.png" alt="Dolphin Logo">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

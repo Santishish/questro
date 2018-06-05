@@ -1,5 +1,13 @@
 .jumbotron {
   background: #dcd9d9;
-  padding: 2rem 2rem;
+  padding: 2rem 0;
 }
 
+.title {
+  text-align: center !important;
+  font-size: 2em;
+}
+
+.container-fluid {
+  padding: 0;
+}

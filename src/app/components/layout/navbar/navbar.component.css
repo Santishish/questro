@@ -29,3 +29,14 @@
   position: fixed;
   top: 0;
 }
+
+.btn {
+  display: block;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 780px) {
+  .nav-bar {
+    display: none;
+  }
+}

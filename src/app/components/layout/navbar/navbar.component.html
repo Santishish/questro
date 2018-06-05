@@ -1,3 +1,5 @@
+<app-side-menu></app-side-menu>
+
 <nav class="nav-bar">
   <div class="top-nav container-fluid row">
     <div class="col-md-2 d-flex align-items-center">
@@ -28,13 +30,13 @@
       </div>
 
     </div>
-    <div class="col-md-2 d-flex align-items-center">
-      <button mat-raised-button class="btn btn-primary w-75">BOOK NOW</button>
+    <div class="col-md-2 d-flex align-items-center justify-content-center">
+      <button mat-raised-button class="btn btn-primary">BOOK NOW</button>
     </div>
   </div>
-  <div [@scrollAnimation]="state" class="bottom-nav container">
-    <div class="col-md-8 d-flex justify-content-around h-100 align-items-center mx-auto">
-      <ul class="nav">
+  <div [@scrollAnimation]="state" class="bottom-nav container-fluid">
+    <div class="col-md-12 d-flex h-100 align-items-center mx-auto">
+      <ul class="nav mx-auto">
         <li class="nav-item">
           <a routerLink="/promotions" [routerLinkActive]="['active']" class="nav-link">PROMOTIONS</a>
         </li>

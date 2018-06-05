@@ -1,0 +1,30 @@
+
+.jumbotron {
+  background: #dcd9d9;
+}
+
+.mat-button {
+  color: #FFFFFF;
+  font-weight: 300;
+}
+
+.card-img-overlay {
+  top: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+hr {
+  border: 1px solid #FFFFFF;
+}
+
+.title {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  color: #FFFFFF !important;
+}
+
+.content {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}

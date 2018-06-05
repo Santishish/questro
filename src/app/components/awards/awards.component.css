@@ -19,3 +19,12 @@
 .awards {
   background: #dcd9d9;
 }
+
+.award {
+  padding: 0;
+}
+
+.award img {
+  display: block;
+  margin: 0 auto;
+}

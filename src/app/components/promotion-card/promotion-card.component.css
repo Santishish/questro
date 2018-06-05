@@ -1,0 +1,12 @@
+h4 {
+  color: #1361a0;
+  text-transform: uppercase;
+}
+
+hr {
+  border: 1px solid #999999;
+}
+
+.card-footer {
+  border-top: 1px solid #cccccc;
+}

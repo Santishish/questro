@@ -1,0 +1,37 @@
+.sidenav-container {
+  height: 100%;
+  display: none;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.nav-bar {
+  height: 3rem;
+}
+
+.active {
+  color: #1361a0;
+}
+
+.mat-toolbar {
+  background: #FFFFFF;
+}
+
+.close {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .sidenav-container {
+    display: block;
+  }
+}
+
+@media (max-width: 577px) {
+  .logo img {
+    max-width: 50%;
+  }
+}

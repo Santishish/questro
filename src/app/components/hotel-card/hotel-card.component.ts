@@ -21,7 +21,7 @@ export class HotelCardComponent {
         { iconURL: 'assets/icons/cards/concierge.svg', text: 'Concierge service' },
         { iconURL: 'assets/icons/cards/safe.svg', text: 'Security boxes' },
         { iconURL: 'assets/icons/cards/dinner.svg', text: 'One place six dinning' },
-        { iconURL: 'assets/icons/cards/culinary.svg', text: 'Culinary events (subject to availability)' },
+        { iconURL: 'assets/icons/cards/culinary.svg', text: 'Culinary events' },
         { iconURL: 'assets/icons/cards/swimmer.svg', text: 'Swimmable beach' }
       ],
       websiteURL: 'http://www.casadorada.com/default-en.html'
@@ -58,7 +58,6 @@ export class HotelCardComponent {
         { iconURL: 'assets/icons/cards/safe.svg', text: 'Security boxes' },
         { iconURL: 'assets/icons/cards/tennis-court.svg', text: 'Tennis court' },
         { iconURL: 'assets/icons/cards/golf.svg', text: 'Golf court' },
-        { iconURL: 'assets/icons/cards/pbeach.svg', text: 'Privacy beach' }
       ],
       websiteURL: 'http://www.casadorada.com/default-en.html'
     }

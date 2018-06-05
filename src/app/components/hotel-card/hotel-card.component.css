@@ -1,6 +1,5 @@
-
-button {
-  color: #1361a0;
+ul {
+  padding: 0;
 }
 
 ul li {
@@ -8,18 +7,14 @@ ul li {
   color: #999999;
 }
 
-.card {
-  border-radius: 0 !important;
-}
-
-.card-img-top {
-  border-radius: 0 !important;
-}
-
 .card-icon {
   margin-right: 10px;
   height: 16px;
   width: 16px;
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 .card-img-overlay {
@@ -36,17 +31,15 @@ ul li {
   opacity: 0;
 }
 
-/*.hotel-logo {
-  width: 75%;
-}*/
-
-.cdm-logo {
-  width: 215px;
-  position: absolute;
-  top: 25%;
-  left: 25%;
-}
-
 a {
   color: #1361a0;
+}
+
+.hotel-name {
+  text-align: center !important;
+  font-size: 1em;
+}
+
+.card-footer {
+  border-top: 1px solid #cccccc;
 }

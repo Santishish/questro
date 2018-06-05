@@ -1,0 +1,35 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [ngClass]="{routeChange: true ? 'close' : 'open'}"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a (click)="drawer.toggle()" routerLink="/promotions" [routerLinkActive]="['active']" class="nav-link">PROMOTIONS</a>
+      <a (click)="drawer.toggle()" routerLink="/experiences" [routerLinkActive]="['active']" class="nav-link">EXPERIENCES</a>
+      <a (click)="drawer.toggle()" routerLink="/relaxing" [routerLinkActive]="['active']" class="nav-link">RELAXING</a>
+      <a (click)="drawer.toggle()" routerLink="/wedding-events" [routerLinkActive]="['active']" class="nav-link">WEDDINGS &amp; EVENTS</a>
+      <a (click)="drawer.toggle()" routerLink="/contact" [routerLinkActive]="['active']" class="nav-link">CONTACT</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="fixed-top nav-bar">
+      <div class="logo col-sm-3 mx-auto">
+        <img routerLink="/" src="assets/images/QR_Logo.svg" alt="Questro Resorts">
+      </div>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

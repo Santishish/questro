@@ -12,10 +12,11 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,8 @@ import { routing } from './app.routing';
     ComponentsModule,
     PagesModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

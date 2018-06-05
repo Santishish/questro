@@ -1,26 +1,28 @@
 <div class="container-fluid">
   <div class="d-flex justify-content-around">
-    <div class="col-md-4" *ngFor="let hotel of hotels">
-      <div class="card">
-        <div class="position-relative">
-          <img class="card-img-top" src={{hotel.cardImgURL}} alt={{hotel.hotelName}}>
-          <div class="card-img-overlay">
-            <div class="d-flex h-100 align-items-center justify-content-center">
-              <img class="hotel-logo w-50" src={{hotel.overlayLogoURL}} alt={{hotel.hotelName}}>
+    <div class="row">
+      <div class="d-flex col-lg-4 col-md-6" *ngFor="let hotel of hotels">
+        <div class="card flex-fill">
+          <div class="position-relative">
+            <img class="card-img" src={{hotel.cardImgURL}} alt={{hotel.hotelName}}>
+            <div class="card-img-overlay">
+              <div class="d-flex h-100 align-items-center justify-content-center">
+                <img class="hotel-logo w-50" src={{hotel.overlayLogoURL}} alt={{hotel.hotelName}}>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card-body">
-          <h4 class="text-center">{{hotel.hotelName}}</h4>
-          <ul>
-            <li *ngFor="let feature of hotel.features">
-              <img class="card-icon" src={{feature.iconURL}} alt="">{{feature.text}}
-            </li>
-          </ul>
-          <hr>
-
-          <div class="d-flex justify-content-center">
-            <a href={{hotel.websiteURL}} mat-button>MORE DETAILS</a>
+          <div class="d-flex flex-column card-body">
+            <h4 class="hotel-name">{{hotel.hotelName}}</h4>
+            <div class="col-md-10">
+              <ul>
+                <li *ngFor="let feature of hotel.features">
+                  <img class="card-icon" src={{feature.iconURL}} alt="">{{feature.text}}
+                </li>
+              </ul>
+            </div>
+            <div class="justify-content-center mt-auto card-footer">
+              <a href={{hotel.websiteURL}} mat-button>MORE DETAILS</a>
+            </div>
           </div>
         </div>
       </div>
