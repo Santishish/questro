@@ -3,16 +3,23 @@
   <div class="col-md-12 text-center">
     <h2>FIND OUT ABOUT OUR EVENTS AND ACTIVITIES</h2>
   </div>
-  <form>
+  <form #f="ngForm" (submit)="save()">
     <div class="row justify-content-around">
       <div class="col-md-4">
         <mat-form-field>
-          <input matInput placeholder="Your Name">
+          <input matInput [(ngModel)]="subscriber.name" name="name" id="name" required placeholder="Your Name">
+          <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field>
-          <input matInput placeholder="Email">
+          <input matInput [(ngModel)]="subscriber.email" name="email" id="email" required [formControl]="emailVal" placeholder="Email">
+          <mat-error *ngIf="emailVal.hasError('email') && !emailVal.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailVal.hasError('required')">
+            Email is required
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-2">

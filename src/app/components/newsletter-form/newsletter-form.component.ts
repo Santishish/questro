@@ -1,15 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {SubscriberService} from '../../services/subscriber.service';
+import {Subscriber} from '../../models/subscriber';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-newsletter-form',
   templateUrl: './newsletter-form.component.html',
   styleUrls: ['./newsletter-form.component.css']
 })
-export class NewsletterFormComponent implements OnInit {
+export class NewsletterFormComponent {
 
-  constructor() { }
+  subscriber: Subscriber = {name: '', email: ''};
+  name = new FormControl('', Validators.required);
+  emailVal = new FormControl('', [Validators.required, Validators.email]);
 
-  ngOnInit() {
+  getErrorMessage() {
+    return this.name.hasError('required') ? 'Name is required' : '';
+  }
+
+  constructor(private snackBar: MatSnackBar, private subscriberService: SubscriberService) { }
+
+  save() {
+    if (!this.subscriber.name || !this.subscriber.email) return;
+    this.subscriberService.createSubscriber(this.subscriber)
+      .then(() => {
+        this.snackBar.open(`Email ${this.subscriber.email} has been registered!`, "Close", {
+          duration: 2000
+        });
+      });
+
+
   }
 
 }
