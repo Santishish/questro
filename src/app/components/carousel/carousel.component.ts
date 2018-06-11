@@ -152,7 +152,7 @@ export class CarouselComponent implements OnDestroy {
 
     }
   }
-  // Fixed problem while cannot swipe next / previous image while using HammerJS.
+  // Fixed problem while cannot swipe next / previous imgURL while using HammerJS.
   swipe(action = this.SWIPE_ACTION.RIGHT) {
     if (action === this.SWIPE_ACTION.RIGHT) {
       this.previousSlide();

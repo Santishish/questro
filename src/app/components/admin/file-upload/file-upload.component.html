@@ -1,0 +1,54 @@
+<div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="startUpload($event)"
+     [class.hovering]="isHovering">
+  <div class="filezone">
+    <label class="file-label">
+
+
+      <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+
+
+      <span class="file-cta">
+          <span class="file-icon">
+            <i class="material-icons">cloud_upload</i>
+          </span>
+          <span class="file-label">
+            or choose a file…
+          </span>
+        </span>
+    </label>
+  </div>
+
+</div>
+
+<div *ngIf="percentage | async as pct">
+
+  <progress class="progress is-info"
+            [value]="pct"
+            max="100">
+  </progress>
+
+  {{ pct | number }}%
+
+</div>
+
+
+<div *ngIf="snapshot | async as snap">
+  {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+
+  <div *ngIf="downloadURL | async as url">
+    <h3>Results!</h3>
+    <img [src]="url"><br>
+    <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+  </div>
+</div>
+
+<!--
+<div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="drop($event)"
+     [class.hovering]="isHovering">
+  <div class="file">
+    <p>Arrastra y suelta una imagen o <span class="file-icon">
+                  <i class="material-icons">cloud_upload</i>
+                </span> elige un archivo</p>
+    <input formControlName="imgURL" class="file-input" type="file">
+  </div>
+</div>-->

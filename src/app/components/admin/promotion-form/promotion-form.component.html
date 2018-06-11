@@ -1,0 +1,88 @@
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">Promociones</h4>
+    <p class="card-category">Agrega una nueva promoción</p>
+  </div>
+  <div class="card-body">
+    <form #f="ngForm" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <input [(ngModel)]="promotion.title" name="title" required matInput placeholder="Título">
+            <mat-error *ngIf="titleVal.hasError('required')">
+              Título es un campo <strong>obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field>
+            <input [(ngModel)]="promotion.startDate" name="startDate" required matInput [matDatepicker]="inicio" placeholder="Fecha de inicio">
+            <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
+            <mat-datepicker #inicio></mat-datepicker>
+            <mat-error *ngIf="startDateVal.hasError('required')">
+              Debe poner una fecha de inicio
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+          <mat-form-field>
+            <input [(ngModel)]="promotion.endDate" name="endDate" matInput required [matDatepicker]="fin" placeholder="Fecha de finalización">
+            <mat-datepicker-toggle matSuffix [for]="fin"></mat-datepicker-toggle>
+            <mat-datepicker #fin></mat-datepicker>
+            <mat-error *ngIf="endDateVal.hasError('required')">
+              Debe poner una fecha de finalización
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <!--<label>Texto</label>-->
+          <mat-form-field>
+            <textarea [(ngModel)]="promotion.text" name="text" required matInput placeholder="Texto"></textarea>
+            <mat-error *ngIf="textVal.hasError('required')">
+              Texto es un campo <strong>obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <input [(ngModel)]="promotion.additionalInfo" name="additionalInfo" matInput placeholder="Información Adicional">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-8">
+          <input class="form-control-file" type="file" (change)="onChangeFile($event.target.files)">
+          <div class="mt-2" *ngIf="promotionService.percentage | async as pct">
+            <progress class="progress is-info"
+                      [value]="pct"
+                      max="100">
+            </progress>
+            {{ pct | number }}%
+          </div>
+          <div *ngIf="promotionService.snapshot | async as snap">
+            {{ snap.bytesTransferred | fileSize }} de {{ snap.totalBytes | fileSize }}
+
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div *ngIf="promotionService.downloadURL | async as url">
+            <img [src]="url">
+          </div>
+        </div>
+      </div>
+      <button mat-raised-button type="submit" class="btn btn-danger pull-right">Agregar</button>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>

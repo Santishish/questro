@@ -1,3 +1,26 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <div class="col-md-4 mx-auto">
+    <div class="login">
+      <h3>Iniciar Sesión</h3>
+      <form #login="ngForm" (submit)="signIn($event)">
+        <mat-form-field>
+          <input [(ngModel)]="userData.email" name="email" [formControl]="userEmail" matInput placeholder="Usuario">
+          <mat-error *ngIf="userEmail.hasError('email') && !userEmail.hasError('required')">
+            Ingrese un correo electrónico válido
+          </mat-error>
+          <mat-error *ngIf="userEmail.hasError('required')">
+            El campo AppUser es requerido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [(ngModel)]="userData.password" name="password" [formControl]="userPassword" matInput type="password"
+                 placeholder="Contraseña">
+          <mat-error *ngIf="userPassword.invalid">
+            El campo Contraseña es requerido
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button class="btn btn-primary w-100">INICIAR SESIÓN</button>
+      </form>
+    </div>
+  </div>
+</div>

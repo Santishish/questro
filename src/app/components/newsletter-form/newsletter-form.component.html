@@ -5,13 +5,13 @@
   </div>
   <form #f="ngForm" (submit)="save()">
     <div class="row justify-content-around">
-      <div class="col-md-4">
+      <div class="col-lg-4">
         <mat-form-field>
           <input matInput [(ngModel)]="subscriber.name" name="name" id="name" required placeholder="Your Name">
           <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-4">
         <mat-form-field>
           <input matInput [(ngModel)]="subscriber.email" name="email" id="email" required [formControl]="emailVal" placeholder="Email">
           <mat-error *ngIf="emailVal.hasError('email') && !emailVal.hasError('required')">
@@ -22,7 +22,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <button mat-raised-button class="btn btn-primary w-100">SUBSCRIBE</button>
       </div>
 

@@ -10,6 +10,8 @@ import {LoginComponent} from './pages/login/login.component';
 import {DashboardComponent} from './pages/admin/dashboard/dashboard.component';
 import {PromotionsComponent} from './pages/promotions/promotions.component';
 import {ContactComponent} from './pages/contact/contact.component';
+import {AuthGuard} from './services/auth-guard.service';
+import {AdmPromotionsComponent} from './pages/admin/adm-promotions/adm-promotions.component';
 
 const routes: Routes = [
   // Rutas de los sitios públicos
@@ -30,9 +32,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdmLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: '', component: DashboardComponent, pathMatch: 'full' },
-      // { path: 'promotions', component: PromotionsComponent },
+      { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
+      { path: 'promotions', component: AdmPromotionsComponent },
     ]
   },
 
