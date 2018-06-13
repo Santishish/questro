@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../../../../services/authentication.service';
+import {MessageService} from '../../../../services/message.service';
 
 declare interface RouteInfo {
   path: string;
@@ -10,10 +12,8 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   { path: '/admin/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
   { path: '/admin/promotions', title: 'Promociones',  icon: 'attach_money', class: '' },
-  { path: '/table-list', title: 'Table List',  icon: 'content_paste', class: '' },
-  { path: '/typography', title: 'Typography',  icon: 'library_books', class: '' },
-  { path: '/icons', title: 'Icons',  icon: 'bubble_chart', class: '' },
-  { path: '/notifications', title: 'Notifications',  icon: 'notifications', class: '' },
+  { path: '/admin/users', title: 'Usuarios',  icon: 'person', class: '' },
+  { path: '/admin/messages', title: 'Mensajes',  icon: 'message', class: '' },
 ];
 
 @Component({
@@ -25,8 +25,11 @@ export const ROUTES: RouteInfo[] = [
 export class AdmSidebarComponent implements OnInit {
 
   menuItems: any[];
+  unread;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService, private messageService: MessageService) {
+    this.messageService.getUnreadMessages().valueChanges().subscribe(data => this.unread = data.length);
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -40,6 +43,10 @@ export class AdmSidebarComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  signOut() {
+    this.authService.signOut();
   }
 
 }

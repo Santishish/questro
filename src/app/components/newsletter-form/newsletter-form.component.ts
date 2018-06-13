@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 import {SubscriberService} from '../../services/subscriber.service';
 import {Subscriber} from '../../models/subscriber';
 import {MatSnackBar} from '@angular/material';
@@ -21,13 +21,17 @@ export class NewsletterFormComponent {
 
   constructor(private snackBar: MatSnackBar, private subscriberService: SubscriberService) { }
 
-  save() {
+  save(f: NgForm) {
     if (!this.subscriber.name || !this.subscriber.email) return;
     this.subscriberService.createSubscriber(this.subscriber)
       .then(() => {
         this.snackBar.open(`Email ${this.subscriber.email} has been registered!`, "Close", {
           duration: 2000
         });
+        f.form.reset();
+        f.form.markAsUntouched();
+        f.form.markAsPristine();
+        f.form.updateValueAndValidity();
       });
 
 

@@ -12,6 +12,9 @@ import {PromotionsComponent} from './pages/promotions/promotions.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {AuthGuard} from './services/auth-guard.service';
 import {AdmPromotionsComponent} from './pages/admin/adm-promotions/adm-promotions.component';
+import {AdmUsersComponent} from './pages/admin/adm-users/adm-users.component';
+import {AdmMessagesComponent} from './pages/admin/adm-messages/adm-messages.component';
+import {AdmMessageComponent} from './pages/admin/adm-message/adm-message.component';
 
 const routes: Routes = [
   // Rutas de los sitios públicos
@@ -36,7 +39,11 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
       { path: 'promotions', component: AdmPromotionsComponent },
-    ]
+      { path: 'users', component: AdmUsersComponent },
+      { path: 'messages', component: AdmMessagesComponent },
+      { path: 'messages/:id', component: AdmMessageComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
+    ],
   },
 
   // Rutas sin layout

@@ -1,0 +1,49 @@
+
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title ">Mensajes</h4>
+    <p class="card-category"> Lista de mensajes</p>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+        <th>
+          De
+        </th>
+        <th>
+          Asunto
+        </th>
+        <th>
+          Fecha
+        </th>
+        <th>
+          Acciones
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let message of messages$ | async">
+          <td>
+            <p [ngClass]="{'notRead': !message.read}">{{ message.name }}</p>
+          </td>
+          <td>
+            <a [ngClass]="{'notRead': !message.read}" routerLink="/admin/messages/{{message.$key}}">{{ message.subject }}</a>
+          </td>
+          <td>
+            <p [ngClass]="{'notRead': !message.read}">{{ message.date }}</p>
+          </td>
+          <td>
+            <button (click)="deleteMessage(message)" mat-raised-button mat-min-fab class="btn btn-danger btn-just-icon">
+              <i class="material-icons">delete</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="(messages$ | async)?.length == 0">
+      <p class="text-center">No hay mensajes</p>
+    </div>
+  </div>
+</div>

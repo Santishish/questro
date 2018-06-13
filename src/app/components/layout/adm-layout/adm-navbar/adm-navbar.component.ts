@@ -1,7 +1,9 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ROUTES} from '../adm-sidebar/adm-sidebar.component';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import {Location} from '@angular/common';
+import {MessageService} from '../../../../services/message.service';
+import {AuthenticationService} from '../../../../services/authentication.service';
 
 @Component({
   selector: 'app-adm-navbar',
@@ -11,25 +13,43 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 export class AdmNavbarComponent implements OnInit {
 
   private listTitles: any[];
-  location: Location;
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
+  unread;
 
-  constructor(location: Location, private element: ElementRef, private router: Router) { }
+  constructor(location: Location,
+              private element: ElementRef,
+              private router: Router,
+              public messageService: MessageService,
+              public authService: AuthenticationService)
+  {
+    this.messageService.getUnreadMessages().valueChanges().subscribe(data => this.unread = data.length);
+  }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(() => {
       this.sidebarClose();
-      const $layer: any = document.getElementsByClassName('close-layer')[0];
+      var $layer: any = document.getElementsByClassName('close-layer')[0];
       if ($layer) {
         $layer.remove();
         this.mobile_menu_visible = 0;
       }
     });
+
+  }
+
+  isMobileMenu() {
+    const width = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+    if (width > 991) {
+      return false;
+    }
+    return true;
   }
 
   sidebarOpen() {
@@ -52,8 +72,6 @@ export class AdmNavbarComponent implements OnInit {
   }
 
   sidebarToggle() {
-    // const toggleButton = this.toggleButton;
-    // const body = document.getElementsByTagName('body')[0];
     const $toggle = document.getElementsByClassName('navbar-toggler')[0];
 
     if (this.sidebarVisible === false) {
@@ -64,7 +82,6 @@ export class AdmNavbarComponent implements OnInit {
     const body = document.getElementsByTagName('body')[0];
 
     if (this.mobile_menu_visible === 1) {
-      // $('html').removeClass('nav-open');
       body.classList.remove('nav-open');
       if ($layer) {
         $layer.remove();
@@ -109,20 +126,8 @@ export class AdmNavbarComponent implements OnInit {
     }
   }
 
-  getTitle(){
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if(titlee.charAt(0) === '#'){
-      titlee = titlee.slice( 2 );
-    }
-    titlee = titlee.split('/').pop();
-
-    for(var item = 0; item < this.listTitles.length; item++){
-      if(this.listTitles[item].path === titlee){
-        return this.listTitles[item].title;
-      }
-    }
-    return 'Dashboard';
+  signOut () {
+    this.authService.signOut();
   }
-
 
 }

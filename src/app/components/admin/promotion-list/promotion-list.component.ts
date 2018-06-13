@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {PromotionService} from '../../../services/promotion.service';
 import {MatSnackBar} from '@angular/material';
 
-declare const swal: any;
+ declare const swal: any;
 
 @Component({
   selector: 'app-promotion-list',
@@ -17,16 +17,7 @@ export class PromotionListComponent {
   }
 
   removePromotion(promotion) {
-    if(confirm(`¿Desea eliminar la promoción ${promotion.title}?`)) {
-      this.promotionService.deletePromotion(promotion.$key)
-        .then(() => {
-          this.snackBar.open('La promoción se ha eliminado', 'Cerrar', {
-            duration: 2000
-          });
-        });
-    }
-
-    /*swal({
+    swal({
       title: '¿Está seguro?',
       text: `¿Desea eliminar la promoción ${promotion.title}?`,
       icon: 'warning',
@@ -34,11 +25,11 @@ export class PromotionListComponent {
       dangerMode: true
     }).then((willDelete) => {
       if (willDelete) {
-        this.promotionService.deletePromotion(promotion.$key);
+        this.promotionService.deletePromotion({...promotion, id: promotion.$key});
       } else {
         swal('No se eliminó la promoción');
       }
-    });*/
+    });
   }
 
 }

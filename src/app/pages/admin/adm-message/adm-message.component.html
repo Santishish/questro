@@ -1,0 +1,21 @@
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-10">
+        <div *ngIf="message" class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">{{message.subject}}</h4>
+            <p class="card-category"> {{ message.name }}, {{ message.email }}</p>
+          </div>
+          <div class="card-body">
+            <p>
+              {{message.text}}
+            </p>
+            <p>{{message.date}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <p class="card-category">Agrega una nueva promoción</p>
   </div>
   <div class="card-body">
-    <form #f="ngForm" (ngSubmit)="submit()">
+    <form #f="ngForm" (ngSubmit)="submit(f)">
       <div class="row">
         <div class="col-md-4">
           <mat-form-field>
@@ -25,7 +25,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-
         <div class="col-md-4">
           <mat-form-field>
             <input [(ngModel)]="promotion.endDate" name="endDate" matInput required [matDatepicker]="fin" placeholder="Fecha de finalización">
@@ -61,23 +60,22 @@
 
       <div class="row">
         <div class="col-md-8">
-          <input class="form-control-file" type="file" (change)="onChangeFile($event.target.files)">
-          <div class="mt-2" *ngIf="promotionService.percentage | async as pct">
-            <progress class="progress is-info"
-                      [value]="pct"
-                      max="100">
-            </progress>
-            {{ pct | number }}%
-          </div>
-          <div *ngIf="promotionService.snapshot | async as snap">
-            {{ snap.bytesTransferred | fileSize }} de {{ snap.totalBytes | fileSize }}
+          <label class="btn btn-outline-danger">
+            <span *ngIf="!image">Selecciona un archivo</span>
+            <span *ngIf="image">{{(image.item(0)).name}}</span>
+            <input hidden class="form-control-file" type="file"
+                                 (change)="onChangeFile($event.target.files)">
+          </label>
 
-
-          </div>
+          <mat-progress-bar *ngIf="progress.percentage" class="mt-2"
+               mode="determinate"
+               [value]="progress.percentage">
+            {{progress.percentage}}%
+          </mat-progress-bar>
         </div>
         <div class="col-md-4">
-          <div *ngIf="promotionService.downloadURL | async as url">
-            <img [src]="url">
+          <div *ngIf="promotionService.imgURL">
+            <img [src]="promotionService.imgURL">
           </div>
         </div>
       </div>

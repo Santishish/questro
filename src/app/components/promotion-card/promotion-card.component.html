@@ -2,15 +2,15 @@
   <h2 class="text-center">THE BEST EXPERIENCES</h2>
   <div class="row">
 
-      <div class="d-flex col-md-4 col-sm-10" *ngFor="let promotion of promotions">
+      <div class="d-flex col-md-4 col-sm-10" *ngFor="let promo of promotions$ | async">
         <div class="card flex-fill">
-          <img src={{promotion.imgURL}} alt={{promotion.title}} class="card-img">
+          <img *ngIf="promo" [src]="promo.imgURL" alt={{promo.title}} class="card-img">
           <div class="d-flex flex-column card-body">
-            <h4>{{promotion.title}}</h4>
+            <h4>{{promo.title}}</h4>
             <p class="text-justify">
-               {{promotion.text}}
+               {{promo.text}}
             </p>
-            <p *ngIf="promotion.additionalInfo"><strong>{{promotion.additionalInfo}}</strong></p>
+            <p *ngIf="promo.additionalInfo"><strong>{{promo.additionalInfo}}</strong></p>
             <div class="justify-content-center mt-auto card-footer">
               <button mat-button>MORE DETAILS</button>
             </div>

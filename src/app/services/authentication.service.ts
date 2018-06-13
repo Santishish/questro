@@ -13,9 +13,14 @@ export class AuthenticationService {
     this.user$ = afAuth.authState;
   }
 
-  registerUser(user: AppUser) {
-    auth().createUserWithEmailAndPassword(user.email, user.password)
-      .then(response => console.log(response.user.uid))
+  registerUser(appUser: AppUser) {
+    return auth().createUserWithEmailAndPassword(appUser.email, appUser.password)
+      .then((res) => {
+        res.user.updateProfile({
+          displayName: appUser.name,
+          photoURL: null
+        });
+      })
       .catch(error => console.log(error));
   }
 
@@ -26,8 +31,11 @@ export class AuthenticationService {
   signOut() {
     auth().signOut()
       .then(() => {
-        this.router.navigate(['/login'])
-          .then(() => console.log("Logged Out successfully"));
+        this.router.navigate(['/login']);
       });
   }
+
+  /*getUsers() {
+
+  }*/
 }

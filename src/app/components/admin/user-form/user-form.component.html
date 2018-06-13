@@ -1,0 +1,47 @@
+
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">Usuarios</h4>
+    <p class="card-category">Agrega un nuevo usuario</p>
+  </div>
+  <div class="card-body">
+    <form #f="ngForm" (ngSubmit)="submit(f.value)">
+      <div class="row">
+        <div class="col-md-10">
+          <mat-form-field>
+            <input ngModel name="name" required matInput placeholder="Nombre">
+            <mat-error>
+              Título es un campo <strong>obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <!--<label>Texto</label>-->
+          <mat-form-field>
+            <input ngModel name="email" required type="email" matInput placeholder="Email">
+            <mat-error>
+              Email es un campo <strong>obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <mat-form-field>
+            <input ngModel name="password" type="password" required matInput placeholder="Contraseña">
+            <mat-error>
+              Contraseña es un campo <strong>obligatorio</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-raised-button type="submit" class="btn btn-danger pull-right">Agregar</button>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>

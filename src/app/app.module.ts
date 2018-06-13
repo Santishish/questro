@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 import { MatButtonModule } from '@angular/material';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthGuard} from './services/auth-guard.service';
+import {HttpClientModule} from '@angular/common/http';
+import {PromotionService} from './services/promotion.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,11 @@ import {AuthGuard} from './services/auth-guard.service';
     AngularFirestoreModule,
     AngularFireStorageModule,
     MatButtonModule,
+    HttpClientModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    PromotionService
   ],
   bootstrap: [AppComponent]
 })

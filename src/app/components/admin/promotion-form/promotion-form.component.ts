@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 import {PromotionService} from '../../../services/promotion.service';
 import {MatSnackBar} from '@angular/material';
 import {Promotion} from '../../../models/promotion';
@@ -15,6 +15,7 @@ export class PromotionFormComponent {
   image: FileList;
   startDateToSend;
   endDateToSend;
+  progress: { percentage: number } = { percentage: 0 };
 
   titleVal = new FormControl('', Validators.required);
   textVal = new FormControl('', Validators.required);
@@ -23,7 +24,7 @@ export class PromotionFormComponent {
 
   constructor(public promotionService: PromotionService, private snackBar: MatSnackBar) {  }
 
-  submit() {
+  submit(form: NgForm) {
     if (!this.image) {
       this.snackBar.open("Debe seleccionar una imagen", "Cerrar", {
         duration: 2000
@@ -32,8 +33,13 @@ export class PromotionFormComponent {
     }
     this.startDateToSend = this.promotion.startDate.toLocaleDateString('en-US');
     this.endDateToSend = this.promotion.endDate.toLocaleDateString('en-US');
-    this.promotionService.createPromotion(this.image,
-      {...this.promotion, startDate: this.startDateToSend, endDate: this.endDateToSend});
+    this.promotionService.pushPromotionImage(this.image,
+      {...this.promotion, startDate: this.startDateToSend, endDate: this.endDateToSend},
+      this.progress);
+    form.reset();
+    form.form.markAsPristine();
+    form.form.markAsUntouched();
+    form.form.updateValueAndValidity();
   }
 
   onChangeFile(event: FileList) {

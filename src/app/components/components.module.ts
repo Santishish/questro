@@ -8,7 +8,7 @@ import {
   MatSelectModule,
   MatNativeDateModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule, MatProgressBarModule
 } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutModule} from '@angular/cdk/layout';
@@ -41,6 +41,12 @@ import { FileUploadComponent } from './admin/file-upload/file-upload.component';
 import {PromotionService} from '../services/promotion.service';
 import {FileSizePipe} from '../pipes/file-size.pipe';
 import {DropZoneDirective} from '../directives/drop-zone.directive';
+import { UserFormComponent } from './admin/user-form/user-form.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { MessagesComponent } from './admin/messages/messages.component';
+import {MessageService} from '../services/message.service';
+import { SubscriberListComponent } from './admin/subscriber-list/subscriber-list.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -61,6 +67,8 @@ import {DropZoneDirective} from '../directives/drop-zone.directive';
     MatIconModule,
     MatListModule,
     AngularFireDatabaseModule,
+    MatProgressBarModule,
+    MatMenuModule
   ],
   declarations: [
     FooterComponent,
@@ -84,7 +92,11 @@ import {DropZoneDirective} from '../directives/drop-zone.directive';
     PromotionListComponent,
     FileUploadComponent,
     DropZoneDirective,
-    FileSizePipe
+    FileSizePipe,
+    UserFormComponent,
+    UserListComponent,
+    MessagesComponent,
+    SubscriberListComponent,
   ],
   exports: [
     FooterComponent,
@@ -102,13 +114,18 @@ import {DropZoneDirective} from '../directives/drop-zone.directive';
     WeddingCardsComponent,
     AppLayoutComponent,
     AdmLayoutComponent,
+    SubscriberListComponent,
     PromotionFormComponent,
-    PromotionListComponent
+    PromotionListComponent,
+    UserFormComponent,
+    UserListComponent,
+    MessagesComponent
   ],
   providers: [
     CarouselConfig,
     SubscriberService,
-    PromotionService
+    PromotionService,
+    MessageService
   ]
 })
 export class ComponentsModule {

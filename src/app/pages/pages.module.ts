@@ -14,7 +14,9 @@ import {MatButtonModule, MatInputModule} from '@angular/material';
 import {AuthenticationService} from '../services/authentication.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {UserService} from '../services/user.service';
+import { AdmUsersComponent } from './admin/adm-users/adm-users.component';
+import { AdmMessagesComponent } from './admin/adm-messages/adm-messages.component';
+import { AdmMessageComponent } from './admin/adm-message/adm-message.component';
 
 @NgModule({
   imports: [
@@ -35,11 +37,14 @@ import {UserService} from '../services/user.service';
     LoginComponent,
     ContactComponent,
     DashboardComponent,
-    AdmPromotionsComponent
+    AdmPromotionsComponent,
+    AdmUsersComponent,
+    AdmMessagesComponent,
+    AdmMessageComponent,
   ],
   providers: [
     AuthenticationService,
-    UserService
   ]
 })
+
 export class PagesModule { }

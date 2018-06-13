@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 import {Promotion} from '../models/promotion';
-import {AngularFireStorage, AngularFireUploadTask} from 'angularfire2/storage';
-import {Observable} from 'rxjs';
-import {finalize, map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material';
+import { storage } from 'firebase/app';
 
 @Injectable()
 export class PromotionService {
-  task: AngularFireUploadTask;
-  percentage: Observable<number>;
-  snapshot: Observable<any>;
-  downloadURL: Observable<string>;
   imgURL: string;
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage, public snackBar: MatSnackBar) { }
+  constructor(private db: AngularFireDatabase, public snackBar: MatSnackBar) { }
 
   getPromotions() {
     return this.db.list('promotions').snapshotChanges().pipe(map(action => {
@@ -26,7 +21,7 @@ export class PromotionService {
     }));
   }
 
-  createPromotion(event: FileList, promotion: Promotion) {
+  pushPromotionImage(event: FileList, promotion, progress: { percentage: number }) {
     const file = event.item(0);
 
     if (file.type.split('/')[0] !== 'image') {
@@ -34,35 +29,58 @@ export class PromotionService {
       return;
     }
 
-    const path = `promotions/${new Date().getTime()}_${file.name}`;
-    const fileRef = this.storage.ref(path);
-    this.task = this.storage.upload(path, file);
-    this.percentage = this.task.percentageChanges();
-    this.snapshot = this.task.snapshotChanges();
+    const storageRef = storage().ref();
+    const fileName = `${new Date().getTime()}_${file.name}`;
+    const uploadTask = storageRef.child(`promotions/${fileName}`).put(file);
 
-    this.snapshot.pipe(
-      finalize(() => this.downloadURL = fileRef.getDownloadURL())
-    ).subscribe();
-
-    this.snapshot = this.task.snapshotChanges().pipe(
-      tap(snap => {
-        if (snap.bytesTransferred === snap.totalBytes) {
-            this.db.list('/promotions').push({...promotion, imgURL: path}).then(() => {
-              this.snackBar.open('La promoción se ha creado exitosamente!', 'Cerrar', {
-                duration: 2000
-              });
-            });
-        }
-      })
-    );
+    uploadTask.on(storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        // En progreso
+        const snap = snapshot as storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      },
+      (error) => {
+      console.log(error);
+      },
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL().then(res => {
+          this.imgURL = res;
+          this.savePromotion(fileName, res, promotion);
+        });
+      });
 
   }
 
-  deletePromotion(id) {
+  savePromotion(fileName: string, url: string, promotion: Promotion) {
+    const newPromotion = {...promotion, imgURL: url, name: fileName};
+    this.db.list('/promotions').push(newPromotion)
+      .then(() => {
+        this.snackBar.open('La promoción se ha creado exitosamente!', 'Cerrar', {
+          duration: 2000
+        });
+      });
+  }
+
+  deleteFromDatabase (id) {
     return this.db.object(`/promotions/${id}`).remove();
   }
 
+  deletePromotion(promotion) {
+    this.deleteFromDatabase(promotion.id)
+      .then(() => {
+        this.deleteFileFromStorage(promotion.name);
+      })
+      .catch(error => console.log(error));
+  }
 
-
+  deleteFileFromStorage (name: string) {
+    const storageRef = storage().ref();
+    return storageRef.child(`promotions/${name}`).delete()
+      .then(() => {
+        this.snackBar.open("Promoción eliminada", "Cerrar", {
+          duration: 2000
+        });
+      });
+  }
 
 }

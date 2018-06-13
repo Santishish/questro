@@ -1,0 +1,45 @@
+
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title ">Suscriptores</h4>
+    <p class="card-category"> Lista de suscriptores</p>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+        <th>
+          ID
+        </th>
+        <th>
+          Nombre
+        </th>
+        <th>
+          Correo electrónico
+        </th>
+        <th>
+          Acciones
+        </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let subscriber of subscriber$ | async">
+          <td>
+            {{ subscriber.$key }}
+          </td>
+          <td>
+            {{ subscriber.name }}
+          </td>
+          <td>
+            {{ subscriber.email }}
+          </td>
+          <td>
+            <button (click)="deleteSubscriber(subscriber)" mat-raised-button mat-min-fab class="btn btn-danger btn-just-icon">
+              <i class="material-icons">delete</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
